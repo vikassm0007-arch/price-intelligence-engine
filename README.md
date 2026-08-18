@@ -1,76 +1,50 @@
-# HTTP Requests for Web Scraping in Python
+# Web Scraping in Python: Complete Reference Guide
 
-A foundational guide to understanding and making HTTP requests for web scraping in Python using the `requests` library.
-
----
-
-## 1. HTTP Basics: Sending a Request
-
-### 🍔 The Restaurant Analogy
-* **Client (Python Script):** You place an order with the waiter (**HTTP Request**).
-* **Server (Website Kitchen):** Receives your request, processes it, and prepares the web page.
-* **Response (Meal & Receipt):** The server returns the payload (HTML/data) along with metadata (**Status Code** & **Headers**).
+This repository contains lessons and working scripts covering the foundations of web scraping in Python.
 
 ---
 
-## 2. GET Requests in Python
+## Lesson 1: HTTP Requests Basics
+*See [`http_scraping_foundations.py`](./http_scraping_foundations.py)*
 
-A **GET request** fetches data from a server without modifying anything on the remote site.
+- **GET Requests:** Requesting data using `requests.get(url, headers=headers)`.
+- **Status Codes:** Understanding `200 OK`, `403 Forbidden`, `404 Not Found`, and `500 Server Error`.
+- **User-Agents:** Setting custom headers to emulate standard desktop web browsers.
+- **`.text` vs `.content`:** Using `.text` for strings/HTML, and `.content` for raw bytes (images/PDFs).
+
+---
+
+## Lesson 2: HTML Structure & BeautifulSoup Parsing
+*See [`html_structure_and_parsing.py`](./html_structure_and_parsing.py)*
+
+### 1. HTML Hierarchy & DOM Tree
+Web pages are structured as a tree of nested HTML tags:
+- `<html>` → Root wrapper
+  - `<head>` → Metadata and scripts
+  - `<body>` → Visible page elements
+    - `<article class="product_pod">` → Product card container
+      - `<h3><a>` → Product title and link
+      - `<p class="price_color">` → Price element
+      - `<img>` → Image tag
+
+### 2. Attributes vs. Inner Text
+- **Inner Text**: Content placed between opening and closing tags.
+  - Example: `<p class="price_color">£51.77</p>` → Extracted with `tag.text`
+- **Attributes**: Key-value metadata inside the tag definition.
+  - Example: `<a href="catalogue/book_1/index.html">` → Extracted with `tag['href']` or `tag.get('href')`
+  - Example: `<img src="media/cover.jpg">` → Extracted with `tag['src']` or `tag.get('src')`
+
+---
+
+## Running the Practice Scripts
 
 ```bash
-pip install requests
+# Install required libraries
+pip install requests beautifulsoup4
+
+# Run Lesson 1 (HTTP Requests)
+python http_scraping_foundations.py
+
+# Run Lesson 2 (HTML Parsing Walkthrough)
+python html_structure_and_parsing.py
 ```
-
-```python
-import requests
-
-response = requests.get("https://example.com")
-```
-
----
-
-## 3. HTTP Status Codes
-
-Status codes are 3-digit numbers returned by the server indicating the result of the request:
-
-| Code | Meaning | Scraping Context |
-| :--- | :--- | :--- |
-| **`200 OK`** | Success | Request succeeded; payload ready for scraping. |
-| **`403 Forbidden`** | Access Denied | Server detected bot traffic or blocked your IP/User-Agent. |
-| **`404 Not Found`** | Page Missing | Invalid URL or page no longer exists. |
-| **`500 Internal Error`** | Server Error | Website crashed internally. |
-
-```python
-# Automatic status checking
-response.raise_for_status()
-```
-
----
-
-## 4. Headers & User-Agents
-
-Websites check request headers to filter out automated scripts. Default `requests` headers broadcast `User-Agent: python-requests/...`, which frequently leads to **403 Forbidden** errors.
-
-To avoid unnecessary blocks, pass custom desktop browser headers:
-
-```python
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-    "Accept-Language": "en-US,en;q=0.9",
-}
-
-response = requests.get("https://example.com", headers=headers)
-```
-
----
-
-## 5. HTML Response: `.text` vs `.content`
-
-- **`response.text`**: Returns HTML/text decoded as a `str` (95% of scraping tasks).
-- **`response.content`**: Returns raw binary bytes (`bytes`). Use this for downloading images, PDFs, or files.
-
----
-
-## 6. Complete Python Example
-
-Run [`http_scraping_foundations.py`](./http_scraping_foundations.py) to test out these concepts.
