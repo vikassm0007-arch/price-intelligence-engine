@@ -1,10 +1,10 @@
-# Web Scraping in Python: Complete Reference Guide
+# Price Intelligence Engine & Web Scraping Foundations
 
-This repository contains lessons and working scripts covering the foundations of web scraping in Python.
+This repository contains lessons, notes, and working scripts covering the foundations of web scraping and price intelligence in Python.
 
 ---
 
-## Lesson 1: HTTP Requests Basics
+## Day 02 — Implement Basic HTTP Request
 *See [`http_scraping_foundations.py`](./http_scraping_foundations.py)*
 
 - **GET Requests:** Requesting data using `requests.get(url, headers=headers)`.
@@ -14,37 +14,54 @@ This repository contains lessons and working scripts covering the foundations of
 
 ---
 
-## Lesson 2: HTML Structure & BeautifulSoup Parsing
-*See [`html_structure_and_parsing.py`](./html_structure_and_parsing.py)*
+## Day 3 — HTML Structure
+*See [`day_03_html_structure.py`](./day_03_html_structure.py)*
 
-### 1. HTML Hierarchy & DOM Tree
-Web pages are structured as a tree of nested HTML tags:
-- `<html>` → Root wrapper
-  - `<head>` → Metadata and scripts
-  - `<body>` → Visible page elements
-    - `<article class="product_pod">` → Product card container
-      - `<h3><a>` → Product title and link
-      - `<p class="price_color">` → Price element
-      - `<img>` → Image tag
+### Learn
 
-### 2. Attributes vs. Inner Text
-- **Inner Text**: Content placed between opening and closing tags.
-  - Example: `<p class="price_color">£51.77</p>` → Extracted with `tag.text`
-- **Attributes**: Key-value metadata inside the tag definition.
-  - Example: `<a href="catalogue/book_1/index.html">` → Extracted with `tag['href']` or `tag.get('href')`
-  - Example: `<img src="media/cover.jpg">` → Extracted with `tag['src']` or `tag.get('src')`
+#### Understand HTML Hierarchy:
+
+```text
+HTML
+ ├── html
+ ├── head
+ └── body
+      ├── div
+      ├── span
+      ├── a
+      └── img
+```
+
+* **`<html>`**: The root element wrapping the entire webpage.
+* **`<head>`**: Contains metadata, page title, and stylesheet links (non-visible).
+* **`<body>`**: Encloses all visible content on the webpage.
+* **`<div>`**: Container element used to group structural components (e.g., product cards).
+* **`<span>`**: Inline container used for styling or holding short text fragments.
+* **`<a>`**: Anchor tag defining hyperlinks (`href` attribute).
+* **`<img>`**: Image tag referencing media files (`src` attribute).
 
 ---
 
-## Running the Practice Scripts
+### Practice Identifying Target Data
+
+On an e-commerce page (e.g., [books.toscrape.com](http://books.toscrape.com/)), target elements are mapped as:
+
+1. **Product Title**: Stored in inner text or `title` attribute of `<a>` inside `<h3>`.
+2. **Price**: Stored in inner text of `<p class="price_color">`.
+3. **Product URL**: Stored in the `href` attribute of the `<a>` link tag.
+4. **Image URL**: Stored in the `src` attribute of the `<img>` image tag.
+
+---
+
+### Build & Run Practice Scripts
 
 ```bash
-# Install required libraries
+# Install dependencies
 pip install requests beautifulsoup4
 
-# Run Lesson 1 (HTTP Requests)
+# Run Day 02 (HTTP Requests)
 python http_scraping_foundations.py
 
-# Run Lesson 2 (HTML Parsing Walkthrough)
-python html_structure_and_parsing.py
+# Run Day 03 (HTML Structure & BeautifulSoup Parsing)
+python day_03_html_structure.py
 ```
