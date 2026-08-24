@@ -1,67 +1,60 @@
-# Price Intelligence Engine & Web Scraping Foundations
+<div align="center">
 
-This repository contains lessons, notes, and working scripts covering the foundations of web scraping and price intelligence in Python.
+# 🕷️ Price Intelligence Engine & Web Scraping Foundations
 
----
+[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge)](./LICENSE)
+[![Status](https://img.shields.io/badge/status-active_learning-orange.svg?style=for-the-badge)](#)
 
-## Day 02 — Implement Basic HTTP Request
-*See [`http_scraping_foundations.py`](./http_scraping_foundations.py)*
+*Mastering web scraping, data extraction, and price intelligence engineering from first principles.*
 
-- **GET Requests:** Requesting data using `requests.get(url, headers=headers)`.
-- **Status Codes:** Understanding `200 OK`, `403 Forbidden`, `404 Not Found`, and `500 Server Error`.
-- **User-Agents:** Setting custom headers to emulate standard desktop web browsers.
-- **`.text` vs `.content`:** Using `.text` for strings/HTML, and `.content` for raw bytes (images/PDFs).
+[Quick Start](#-quick-start) • [Learning Curriculum](#-learning-curriculum) • [Target Mapping](#-target-mapping-reference) • [Scripts Roadmap](#-repository-structure)
 
 ---
 
-## Day 3 — HTML Structure
-*See [`day_03_html_structure.py`](./day_03_html_structure.py)*
+</div>
 
-### Learn
+## 📌 Overview
 
-#### Understand HTML Hierarchy:
+This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, and structured data collection using Python.
+
+---
+
+## 📅 Learning Curriculum
+
+<details open>
+<summary><b>Day 02 — HTTP Request Foundations</b> (<code>http_scraping_foundations.py</code>)</summary>
+
+<br />
+
+Core HTTP networking concepts required to reliably request raw web content without getting blocked:
+
+* **GET Request Dispatching**: Fetching endpoints cleanly using `requests.get(url, headers=headers)`.
+* **User-Agent Spoofing**: Crafting real-world browser headers to mimic desktop clients and avoid anti-scraping flags.
+* **Status Code Handling**: Defensively handling responses across critical status bands:
+  * `200 OK` — Successful data payload.
+  * `403 Forbidden` — Access restricted / Bot block detected.
+  * `404 Not Found` — Endpoint non-existent.
+  * `500 Internal Server Error` — Remote server breakdown.
+* **Payload Parsing (`.text` vs `.content`)**:
+  * `.text`: Decoded Unicode string for HTML, XML, and JSON responses.
+  * `.content`: Raw binary response for media, images, and PDF streams.
+
+</details>
+
+<details open>
+<summary><b>Day 03 — HTML Hierarchy & DOM Traversal</b> (<code>day_03_html_structure.py</code>)</summary>
+
+<br />
+
+Understanding HTML document architecture and locating target nodes inside nested DOM trees:
 
 ```text
-HTML
- ├── html
- ├── head
- └── body
-      ├── div
-      ├── span
-      ├── a
-      └── img
-```
-
-* **`<html>`**: The root element wrapping the entire webpage.
-* **`<head>`**: Contains metadata, page title, and stylesheet links (non-visible).
-* **`<body>`**: Encloses all visible content on the webpage.
-* **`<div>`**: Container element used to group structural components (e.g., product cards).
-* **`<span>`**: Inline container used for styling or holding short text fragments.
-* **`<a>`**: Anchor tag defining hyperlinks (`href` attribute).
-* **`<img>`**: Image tag referencing media files (`src` attribute).
-
----
-
-### Practice Identifying Target Data
-
-On an e-commerce page (e.g., [books.toscrape.com](http://books.toscrape.com/)), target elements are mapped as:
-
-1. **Product Title**: Stored in inner text or `title` attribute of `<a>` inside `<h3>`.
-2. **Price**: Stored in inner text of `<p class="price_color">`.
-3. **Product URL**: Stored in the `href` attribute of the `<a>` link tag.
-4. **Image URL**: Stored in the `src` attribute of the `<img>` image tag.
-
----
-
-### Build & Run Practice Scripts
-
-```bash
-# Install dependencies
-pip install requests beautifulsoup4
-
-# Run Day 02 (HTTP Requests)
-python http_scraping_foundations.py
-
-# Run Day 03 (HTML Structure & BeautifulSoup Parsing)
-python day_03_html_structure.py
-```
+  HTML (Root)
+   ├── <html>
+   │    ├── <head> ── [Metadata, Scripts, Styles]
+   │    └── <body> ── [Visible Webpage Hierarchy]
+   │         ├── <div class="product_pod"> ── [Card Container]
+   │         │    ├── <p class="price_color"> ── [Price Fragment]
+   │         │    ├── <a href="..."> ── [Product Link]
+   │         │    └── <img src="..."> ── [Product Media]
