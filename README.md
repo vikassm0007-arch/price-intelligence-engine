@@ -50,11 +50,87 @@ Core HTTP networking concepts required to reliably request raw web content witho
 Understanding HTML document architecture and locating target nodes inside nested DOM trees:
 
 ```text
-  HTML (Root)
-   ├── <html>
-   │    ├── <head> ── [Metadata, Scripts, Styles]
-   │    └── <body> ── [Visible Webpage Hierarchy]
-   │         ├── <div class="product_pod"> ── [Card Container]
-   │         │    ├── <p class="price_color"> ── [Price Fragment]
-   │         │    ├── <a href="..."> ── [Product Link]
-   │         │    └── <img src="..."> ── [Product Media]
+HTML
+ ├── html
+ ├── head
+ └── body
+      ├── div
+      ├── span
+      ├── a
+      └── img
+```
+
+* **`<html>`**: Root element wrapping the webpage.
+* **`<head>`**: Contains metadata, page title, and stylesheet links.
+* **`<body>`**: Encloses all visible webpage hierarchy.
+* **`<div>` / `<span>`**: Organizational containers.
+* **`<a>` / `<img>`**: Links and media elements.
+
+</details>
+
+<details open>
+<summary><b>Day 04 — BeautifulSoup Selectors</b> (<code>day_04_bs4_selectors.py</code>)</summary>
+
+<br />
+
+Mastering DOM search & CSS selection methods for targeted data extraction:
+
+* **DOM Searching**: `find()` & `find_all()`
+* **CSS Selectors**: `select_one()` & `select()`
+* **Selector Targets**: Classes (`.price_color`), Tags (`h3 > a`), Attributes (`[title]`)
+
+```python
+def extract_title(soup):
+    link = soup.select_one("h3 > a")
+    return link.get("title") if link else "N/A"
+
+def extract_price(soup):
+    price_el = soup.select_one(".price_color")
+    return price_el.get_text(strip=True) if price_el else "N/A"
+
+def extract_url(soup):
+    link = soup.select_one("h3 > a")
+    return link["href"] if link else "N/A"
+```
+
+</details>
+
+<details open>
+<summary><b>Day 05 — Build Your First Product Parser</b> (<code>day_05_product_parser.py</code>)</summary>
+
+<br />
+
+Building a production-ready pipeline that transforms raw unstructured HTML into clean, typed product data models:
+
+```text
+HTML ➔ BeautifulSoup ➔ Product Parser ➔ Product Dictionary
+```
+
+**Target Product Model**:
+```python
+product = {
+    "name": "A Light in the Attic",
+    "price": 51.77,
+    "currency": "GBP",
+    "url": "http://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
+    "image_url": "http://books.toscrape.com/media/cache/2c/da/...jpg",
+    "in_stock": True
+}
+```
+
+</details>
+
+---
+
+## ⚡ Quick Start
+
+```bash
+# 1. Install dependencies
+pip install requests beautifulsoup4
+
+# 2. Run practice scripts
+python http_scraping_foundations.py
+python day_03_html_structure.py
+python day_04_bs4_selectors.py
+python day_05_product_parser.py
+```
