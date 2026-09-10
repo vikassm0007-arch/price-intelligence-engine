@@ -1,0 +1,7 @@
+# Output dataset exports
+products.json
+products.csv
+
+# Python cache
+__pycache__/
+*.pyc

@@ -16,7 +16,7 @@
 
 ## 📌 Overview
 
-This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, and structured data collection using Python.
+This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, data cleaning, and structured dataset export using Python.
 
 ---
 
@@ -31,14 +31,8 @@ Core HTTP networking concepts required to reliably request raw web content witho
 
 * **GET Request Dispatching**: Fetching endpoints cleanly using `requests.get(url, headers=headers)`.
 * **User-Agent Spoofing**: Crafting real-world browser headers to mimic desktop clients and avoid anti-scraping flags.
-* **Status Code Handling**: Defensively handling responses across critical status bands:
-  * `200 OK` — Successful data payload.
-  * `403 Forbidden` — Access restricted / Bot block detected.
-  * `404 Not Found` — Endpoint non-existent.
-  * `500 Internal Server Error` — Remote server breakdown.
-* **Payload Parsing (`.text` vs `.content`)**:
-  * `.text`: Decoded Unicode string for HTML, XML, and JSON responses.
-  * `.content`: Raw binary response for media, images, and PDF streams.
+* **Status Code Handling**: Defensively handling responses across critical status bands (`200 OK`, `403 Forbidden`, `404 Not Found`, `500 Server Error`).
+* **Payload Parsing (`.text` vs `.content`)**: `.text` for strings/HTML, `.content` for raw binary streams.
 
 </details>
 
@@ -47,24 +41,7 @@ Core HTTP networking concepts required to reliably request raw web content witho
 
 <br />
 
-Understanding HTML document architecture and locating target nodes inside nested DOM trees:
-
-```text
-HTML
- ├── html
- ├── head
- └── body
-      ├── div
-      ├── span
-      ├── a
-      └── img
-```
-
-* **`<html>`**: Root element wrapping the webpage.
-* **`<head>`**: Contains metadata, page title, and stylesheet links.
-* **`<body>`**: Encloses all visible webpage hierarchy.
-* **`<div>` / `<span>`**: Organizational containers.
-* **`<a>` / `<img>`**: Links and media elements.
+Understanding HTML document architecture and locating target nodes inside nested DOM trees (`html` ➔ `head`, `body` ➔ `div`, `span`, `a`, `img`).
 
 </details>
 
@@ -73,25 +50,7 @@ HTML
 
 <br />
 
-Mastering DOM search & CSS selection methods for targeted data extraction:
-
-* **DOM Searching**: `find()` & `find_all()`
-* **CSS Selectors**: `select_one()` & `select()`
-* **Selector Targets**: Classes (`.price_color`), Tags (`h3 > a`), Attributes (`[title]`)
-
-```python
-def extract_title(soup):
-    link = soup.select_one("h3 > a")
-    return link.get("title") if link else "N/A"
-
-def extract_price(soup):
-    price_el = soup.select_one(".price_color")
-    return price_el.get_text(strip=True) if price_el else "N/A"
-
-def extract_url(soup):
-    link = soup.select_one("h3 > a")
-    return link["href"] if link else "N/A"
-```
+Mastering DOM search (`find`, `find_all`) and CSS selection (`select`, `select_one`) with modular extraction functions (`extract_title`, `extract_price`, `extract_url`).
 
 </details>
 
@@ -100,23 +59,30 @@ def extract_url(soup):
 
 <br />
 
-Building a production-ready pipeline that transforms raw unstructured HTML into clean, typed product data models:
+Transforming raw HTML cards into structured, typed product dictionary records (`name`, `price`, `currency`, `url`, `in_stock`).
 
-```text
-HTML ➔ BeautifulSoup ➔ Product Parser ➔ Product Dictionary
-```
+</details>
 
-**Target Product Model**:
-```python
-product = {
-    "name": "A Light in the Attic",
-    "price": 51.77,
-    "currency": "GBP",
-    "url": "http://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
-    "image_url": "http://books.toscrape.com/media/cache/2c/da/...jpg",
-    "in_stock": True
-}
-```
+<details open>
+<summary><b>Day 06 — Pagination & Multi-Page Crawling</b> (<code>day_06_pagination.py</code>)</summary>
+
+<br />
+
+Automating multi-page product catalog crawling:
+* **Next Page Identification**: Locating `li.next > a` controls dynamically.
+* **URL Resolution**: Building absolute pagination links with `urljoin`.
+* **Polite Crawling**: Applying request delays (`time.sleep`) and max page limits.
+
+</details>
+
+<details open>
+<summary><b>Day 07 — Data Cleaning, Normalization & Dataset Export</b> (<code>day_07_export_dataset.py</code>)</summary>
+
+<br />
+
+Cleaning, normalizing, and exporting extracted data:
+* **Data Transformation**: Normalizing prices to `float`, mapping rating text (`'Three'`) to numeric values (`3`).
+* **Dataset Export**: Exporting dataset objects to structured `products.json` and `products.csv` files.
 
 </details>
 
@@ -133,4 +99,6 @@ python http_scraping_foundations.py
 python day_03_html_structure.py
 python day_04_bs4_selectors.py
 python day_05_product_parser.py
+python day_06_pagination.py
+python day_07_export_dataset.py
 ```
