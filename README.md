@@ -16,7 +16,7 @@
 
 ## 📌 Overview
 
-This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, data cleaning, and structured dataset export using Python.
+This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, and structured dataset export using Python.
 
 ---
 
@@ -68,10 +68,7 @@ Transforming raw HTML cards into structured, typed product dictionary records (`
 
 <br />
 
-Automating multi-page product catalog crawling:
-* **Next Page Identification**: Locating `li.next > a` controls dynamically.
-* **URL Resolution**: Building absolute pagination links with `urljoin`.
-* **Polite Crawling**: Applying request delays (`time.sleep`) and max page limits.
+Automating multi-page product catalog crawling (`li.next > a`, `urljoin`, `time.sleep`).
 
 </details>
 
@@ -80,9 +77,30 @@ Automating multi-page product catalog crawling:
 
 <br />
 
-Cleaning, normalizing, and exporting extracted data:
-* **Data Transformation**: Normalizing prices to `float`, mapping rating text (`'Three'`) to numeric values (`3`).
-* **Dataset Export**: Exporting dataset objects to structured `products.json` and `products.csv` files.
+Cleaning, normalizing, and exporting extracted data into structured `products.json` and `products.csv` files.
+
+</details>
+
+<details open>
+<summary><b>Day 08 — Defensive Scraping: Retries & User-Agent Rotation</b> (<code>day_08_defensive_scraping.py</code>)</summary>
+
+<br />
+
+Building fault-tolerant HTTP scrapers:
+* **Automatic Retries**: Configuring `HTTPAdapter` with exponential backoff strategy (`Retry` total=3, status_forcelist=[429, 500, 502, 503, 504]).
+* **User-Agent Rotation**: Dynamically selecting real-world browser headers per request.
+* **Safe Extraction**: Defensive DOM text extraction preventing `AttributeError` crashes on missing elements.
+
+</details>
+
+<details open>
+<summary><b>Day 09 — Product Detail Page Scraping (Deep Crawling)</b> (<code>day_09_deep_product_scraper.py</code>)</summary>
+
+<br />
+
+Implementing two-stage deep product web scraping:
+* **Stage 1 (Catalog List)**: Extract product detail URLs.
+* **Stage 2 (Detail Page)**: Extract deep metadata including UPC / ISBN (`a897fe39b1...`), exact stock quantity (`22 available`), category breadcrumb paths (`Home > Books > Poetry`), and full descriptions.
 
 </details>
 
@@ -101,4 +119,6 @@ python day_04_bs4_selectors.py
 python day_05_product_parser.py
 python day_06_pagination.py
 python day_07_export_dataset.py
+python day_08_defensive_scraping.py
+python day_09_deep_product_scraper.py
 ```
