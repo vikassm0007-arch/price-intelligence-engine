@@ -1,6 +1,10 @@
 # Output dataset exports
 products.json
 products.csv
+price_intelligence_report.json
+price_intelligence_report.csv
+*.json
+*.csv
 
 # Python cache
 __pycache__/

@@ -16,7 +16,7 @@
 
 ## 📌 Overview
 
-This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, and structured dataset export using Python.
+This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, analytics generation, and structured dataset export using Python.
 
 ---
 
@@ -27,12 +27,7 @@ This repository documents the step-by-step journey of building a production-read
 
 <br />
 
-Core HTTP networking concepts required to reliably request raw web content without getting blocked:
-
-* **GET Request Dispatching**: Fetching endpoints cleanly using `requests.get(url, headers=headers)`.
-* **User-Agent Spoofing**: Crafting real-world browser headers to mimic desktop clients and avoid anti-scraping flags.
-* **Status Code Handling**: Defensively handling responses across critical status bands (`200 OK`, `403 Forbidden`, `404 Not Found`, `500 Server Error`).
-* **Payload Parsing (`.text` vs `.content`)**: `.text` for strings/HTML, `.content` for raw binary streams.
+Core HTTP networking concepts required to reliably request raw web content without getting blocked (`requests.get`, User-Agent headers, status code validation).
 
 </details>
 
@@ -86,10 +81,7 @@ Cleaning, normalizing, and exporting extracted data into structured `products.js
 
 <br />
 
-Building fault-tolerant HTTP scrapers:
-* **Automatic Retries**: Configuring `HTTPAdapter` with exponential backoff strategy (`Retry` total=3, status_forcelist=[429, 500, 502, 503, 504]).
-* **User-Agent Rotation**: Dynamically selecting real-world browser headers per request.
-* **Safe Extraction**: Defensive DOM text extraction preventing `AttributeError` crashes on missing elements.
+Building fault-tolerant HTTP scrapers with `HTTPAdapter` retries, exponential backoff, and dynamic User-Agent rotation.
 
 </details>
 
@@ -98,9 +90,20 @@ Building fault-tolerant HTTP scrapers:
 
 <br />
 
-Implementing two-stage deep product web scraping:
-* **Stage 1 (Catalog List)**: Extract product detail URLs.
-* **Stage 2 (Detail Page)**: Extract deep metadata including UPC / ISBN (`a897fe39b1...`), exact stock quantity (`22 available`), category breadcrumb paths (`Home > Books > Poetry`), and full descriptions.
+Implementing two-stage deep product web scraping (Catalog List ➔ Detail Pages) extracting UPC codes, stock quantity, and category paths.
+
+</details>
+
+<details open>
+<summary><b>Day 10 — Production Price Intelligence Engine Capstone</b> (<code>day_10_price_engine.py</code>)</summary>
+
+<br />
+
+A production-ready, multi-threaded Price Intelligence Engine:
+* **Architecture**: Object-oriented `PriceIntelligenceEngine` class.
+* **Concurrency**: `ThreadPoolExecutor` parallel worker pool for fast detail-page fetching.
+* **Analytics**: Automated calculation of average price, min/max prices, stock percentages, and crawl duration.
+* **Exports**: Comprehensive JSON (`price_intelligence_report.json`) and CSV (`price_intelligence_report.csv`) dataset reporting.
 
 </details>
 
@@ -112,13 +115,6 @@ Implementing two-stage deep product web scraping:
 # 1. Install dependencies
 pip install requests beautifulsoup4
 
-# 2. Run practice scripts
-python http_scraping_foundations.py
-python day_03_html_structure.py
-python day_04_bs4_selectors.py
-python day_05_product_parser.py
-python day_06_pagination.py
-python day_07_export_dataset.py
-python day_08_defensive_scraping.py
-python day_09_deep_product_scraper.py
+# 2. Run Capstone Engine
+python day_10_price_engine.py
 ```
