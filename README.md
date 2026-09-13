@@ -16,7 +16,7 @@
 
 ## 📌 Overview
 
-This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, analytics generation, and structured dataset export using Python.
+This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, and structured dataset export using Python.
 
 ---
 
@@ -99,11 +99,29 @@ Implementing two-stage deep product web scraping (Catalog List ➔ Detail Pages)
 
 <br />
 
-A production-ready, multi-threaded Price Intelligence Engine:
-* **Architecture**: Object-oriented `PriceIntelligenceEngine` class.
-* **Concurrency**: `ThreadPoolExecutor` parallel worker pool for fast detail-page fetching.
-* **Analytics**: Automated calculation of average price, min/max prices, stock percentages, and crawl duration.
-* **Exports**: Comprehensive JSON (`price_intelligence_report.json`) and CSV (`price_intelligence_report.csv`) dataset reporting.
+A production-ready, multi-threaded Price Intelligence Engine with `ThreadPoolExecutor` parallel worker pool and analytics summary reports.
+
+</details>
+
+<details open>
+<summary><b>Day 11 — Dynamic Content & API Endpoint Inspection</b> (<code>day_11_api_scraper.py</code>)</summary>
+
+<br />
+
+Handling dynamic web endpoints:
+* **JSON API Extraction**: Parsing REST/XHR JSON endpoints directly (`response.json()`).
+* **Hybrid Scraper Architecture**: Direct API extraction attempts with seamless HTML parser fallback.
+
+</details>
+
+<details open>
+<summary><b>Day 12 — Price Monitoring & Trend Anomaly Alerting</b> (<code>day_12_price_tracker.py</code>)</summary>
+
+<br />
+
+Historical price intelligence and trend analytics:
+* **Price Delta Calculation**: Computing absolute ($\Delta \text{Price}$) and percentage changes ($\% \text{Change}$).
+* **Anomaly Detection**: Automated alert generation for significant price drops ($\ge 10\%$), price hikes, and out-of-stock events.
 
 </details>
 
@@ -115,6 +133,16 @@ A production-ready, multi-threaded Price Intelligence Engine:
 # 1. Install dependencies
 pip install requests beautifulsoup4
 
-# 2. Run Capstone Engine
+# 2. Run practice scripts
+python http_scraping_foundations.py
+python day_03_html_structure.py
+python day_04_bs4_selectors.py
+python day_05_product_parser.py
+python day_06_pagination.py
+python day_07_export_dataset.py
+python day_08_defensive_scraping.py
+python day_09_deep_product_scraper.py
 python day_10_price_engine.py
+python day_11_api_scraper.py
+python day_12_price_tracker.py
 ```
