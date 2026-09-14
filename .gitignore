@@ -1,10 +1,13 @@
-# Output dataset exports
+# Output dataset exports & databases
 products.json
 products.csv
 price_intelligence_report.json
 price_intelligence_report.csv
+price_intelligence.db
 *.json
 *.csv
+*.db
+*.sqlite
 
 # Python cache
 __pycache__/

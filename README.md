@@ -16,7 +16,7 @@
 
 ## 📌 Overview
 
-This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, and structured dataset export using Python.
+This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, asynchronous requests, relational SQLite database storage, and structured dataset export using Python.
 
 ---
 
@@ -108,9 +108,7 @@ A production-ready, multi-threaded Price Intelligence Engine with `ThreadPoolExe
 
 <br />
 
-Handling dynamic web endpoints:
-* **JSON API Extraction**: Parsing REST/XHR JSON endpoints directly (`response.json()`).
-* **Hybrid Scraper Architecture**: Direct API extraction attempts with seamless HTML parser fallback.
+Direct JSON API extraction (`response.json()`) with seamless HTML parser fallback.
 
 </details>
 
@@ -119,9 +117,27 @@ Handling dynamic web endpoints:
 
 <br />
 
-Historical price intelligence and trend analytics:
-* **Price Delta Calculation**: Computing absolute ($\Delta \text{Price}$) and percentage changes ($\% \text{Change}$).
-* **Anomaly Detection**: Automated alert generation for significant price drops ($\ge 10\%$), price hikes, and out-of-stock events.
+Historical price intelligence analytics computing $\Delta \text{Price}$ and $\% \text{Change}$ with automated alerts for price drops and stock changes.
+
+</details>
+
+<details open>
+<summary><b>Day 13 — Asynchronous High-Performance Scraping</b> (<code>day_13_async_scraper.py</code>)</summary>
+
+<br />
+
+High-throughput non-blocking scraping using `asyncio` and `aiohttp.ClientSession` (`asyncio.gather`), achieving 10+ requests/sec.
+
+</details>
+
+<details open>
+<summary><b>Day 14 — SQLite Database Persistence & Historical Ledger</b> (<code>day_14_sqlite_storage.py</code>)</summary>
+
+<br />
+
+Relational database snapshot persistence:
+* **Schema Design**: `products` master table and `price_history` ledger table.
+* **SQL Queries**: Querying price ledgers over time and ranking lowest-priced products.
 
 </details>
 
@@ -131,7 +147,7 @@ Historical price intelligence and trend analytics:
 
 ```bash
 # 1. Install dependencies
-pip install requests beautifulsoup4
+pip install requests beautifulsoup4 aiohttp
 
 # 2. Run practice scripts
 python http_scraping_foundations.py
@@ -145,4 +161,6 @@ python day_09_deep_product_scraper.py
 python day_10_price_engine.py
 python day_11_api_scraper.py
 python day_12_price_tracker.py
+python day_13_async_scraper.py
+python day_14_sqlite_storage.py
 ```
