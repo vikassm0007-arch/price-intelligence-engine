@@ -16,7 +16,7 @@
 
 ## 📌 Overview
 
-This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, asynchronous requests, relational SQLite database storage, and structured dataset export using Python.
+This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, asynchronous requests, relational SQLite database storage, automated webhook alerts, and production CLI applications using Python.
 
 ---
 
@@ -135,9 +135,29 @@ High-throughput non-blocking scraping using `asyncio` and `aiohttp.ClientSession
 
 <br />
 
-Relational database snapshot persistence:
-* **Schema Design**: `products` master table and `price_history` ledger table.
-* **SQL Queries**: Querying price ledgers over time and ranking lowest-priced products.
+Relational database snapshot persistence with `products` master and `price_history` ledger tables.
+
+</details>
+
+<details open>
+<summary><b>Day 15 — Scheduled Scraping & Webhook Alerts</b> (<code>day_15_scheduler_alerts.py</code>)</summary>
+
+<br />
+
+Automated background monitoring loops and notification dispatching:
+* **Recurring Execution**: Tracking price snapshot deltas across automated cycles.
+* **Webhook Dispatching**: Real-time notification payloads dispatched when price drops exceed alert thresholds ($\ge 10\%$).
+
+</details>
+
+<details open>
+<summary><b>Day 16 — Production CLI Application</b> (<code>day_16_production_cli.py</code>)</summary>
+
+<br />
+
+Command-line application interface powered by `argparse`:
+* **CLI Arguments**: `--url`, `--pages`, `--output-json`, `--output-csv`, `--verbose`.
+* **Configurable Scraper**: Configurable crawl depth, custom file exports, and verbose logging.
 
 </details>
 
@@ -149,18 +169,6 @@ Relational database snapshot persistence:
 # 1. Install dependencies
 pip install requests beautifulsoup4 aiohttp
 
-# 2. Run practice scripts
-python http_scraping_foundations.py
-python day_03_html_structure.py
-python day_04_bs4_selectors.py
-python day_05_product_parser.py
-python day_06_pagination.py
-python day_07_export_dataset.py
-python day_08_defensive_scraping.py
-python day_09_deep_product_scraper.py
-python day_10_price_engine.py
-python day_11_api_scraper.py
-python day_12_price_tracker.py
-python day_13_async_scraper.py
-python day_14_sqlite_storage.py
+# 2. Run CLI Application
+python day_16_production_cli.py --pages 2 --verbose
 ```
