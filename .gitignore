@@ -6,6 +6,7 @@ price_intelligence_report.csv
 cli_output.json
 cli_output.csv
 price_intelligence.db
+price_intelligence_orm.db
 *.json
 *.csv
 *.db

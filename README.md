@@ -16,7 +16,7 @@
 
 ## 📌 Overview
 
-This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, asynchronous requests, relational SQLite database storage, automated webhook alerts, and production CLI applications using Python.
+This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, asynchronous requests, relational database storage, automated webhooks, headless browser engines, proxy pools, anti-bot evasion, data validation, enterprise ORMs, and REST API services using Python.
 
 ---
 
@@ -144,9 +144,7 @@ Relational database snapshot persistence with `products` master and `price_histo
 
 <br />
 
-Automated background monitoring loops and notification dispatching:
-* **Recurring Execution**: Tracking price snapshot deltas across automated cycles.
-* **Webhook Dispatching**: Real-time notification payloads dispatched when price drops exceed alert thresholds ($\ge 10\%$).
+Automated background monitoring loops and real-time Webhook alert notification dispatching.
 
 </details>
 
@@ -155,9 +153,61 @@ Automated background monitoring loops and notification dispatching:
 
 <br />
 
-Command-line application interface powered by `argparse`:
-* **CLI Arguments**: `--url`, `--pages`, `--output-json`, `--output-csv`, `--verbose`.
-* **Configurable Scraper**: Configurable crawl depth, custom file exports, and verbose logging.
+Command-line application interface powered by `argparse` with `--url`, `--pages`, and export flags.
+
+</details>
+
+<details open>
+<summary><b>Day 17 — Headless Browser & Dynamic SPA Scraping</b> (<code>day_17_playwright_browser.py</code>)</summary>
+
+<br />
+
+Simulating headless browser instances for JavaScript-rendered SPAs and DOM hydration.
+
+</details>
+
+<details open>
+<summary><b>Day 18 — Proxy Pool & IP Rotation</b> (<code>day_18_proxy_rotation.py</code>)</summary>
+
+<br />
+
+Managing proxy pools, proxy authentication, and automatic IP rotation on rate-limiting.
+
+</details>
+
+<details open>
+<summary><b>Day 19 — Anti-Bot Evasion & Fingerprinting</b> (<code>day_19_anti_bot_evasion.py</code>)</summary>
+
+<br />
+
+Simulating human request patterns with jitter delays, header fingerprints (`sec-ch-ua`), and challenge detection.
+
+</details>
+
+<details open>
+<summary><b>Day 20 — Data Validation & Schema Integrity</b> (<code>day_20_data_validation.py</code>)</summary>
+
+<br />
+
+Strongly typed schema validation, filtering corrupted or invalid records automatically.
+
+</details>
+
+<details open>
+<summary><b>Day 21 — Enterprise Database ORM & Audit Logs</b> (<code>day_21_orm_database.py</code>)</summary>
+
+<br />
+
+Enterprise ORM mapping for products and audit log ledgers (`scrape_audit_logs`).
+
+</details>
+
+<details open>
+<summary><b>Day 22 — FastAPI Price Intelligence Service & Dashboard</b> (<code>day_22_api_dashboard.py</code>)</summary>
+
+<br />
+
+Exposing REST API endpoints (`/api/v1/products`, `/api/v1/analytics/price-drops`) to serve dashboard frontend applications.
 
 </details>
 
