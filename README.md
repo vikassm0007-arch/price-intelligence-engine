@@ -16,7 +16,7 @@
 
 ## 📌 Overview
 
-This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, asynchronous requests, relational database storage, automated webhooks, headless browser engines, proxy pools, anti-bot evasion, data validation, enterprise ORMs, and REST API services using Python.
+This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, asynchronous requests, relational database storage, automated webhooks, headless browser engines, proxy pools, anti-bot evasion, data validation, enterprise ORMs, REST API services, task worker queues, and enterprise capstone systems using Python.
 
 ---
 
@@ -211,6 +211,24 @@ Exposing REST API endpoints (`/api/v1/products`, `/api/v1/analytics/price-drops`
 
 </details>
 
+<details open>
+<summary><b>Day 23 — Distributed Task Queue & Worker Architecture</b> (<code>day_23_task_queue.py</code>)</summary>
+
+<br />
+
+Producer-Consumer task queue pattern with worker pool execution and task status lifecycle tracking (`PENDING`, `PROCESSING`, `COMPLETED`, `FAILED`).
+
+</details>
+
+<details open>
+<summary><b>Day 24 — Enterprise Price Intelligence System Capstone</b> (<code>day_24_enterprise_system.py</code>)</summary>
+
+<br />
+
+Full-stack enterprise system capstone integrating HTTP fetchers, DOM parsers, health audit metric reports, and multi-format exporters.
+
+</details>
+
 ---
 
 ## ⚡ Quick Start
@@ -221,4 +239,7 @@ pip install requests beautifulsoup4 aiohttp
 
 # 2. Run CLI Application
 python day_16_production_cli.py --pages 2 --verbose
+
+# 3. Run Enterprise System Capstone
+python day_24_enterprise_system.py
 ```
