@@ -16,7 +16,7 @@
 
 ## 📌 Overview
 
-This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, asynchronous requests, relational database storage, automated webhooks, headless browser engines, proxy pools, anti-bot evasion, data validation, enterprise ORMs, REST API services, task worker queues, and enterprise capstone systems using Python.
+This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, asynchronous requests, relational database storage, automated webhooks, headless browser engines, proxy pools, anti-bot evasion, data validation, enterprise ORMs, REST API services, task worker queues, enterprise capstone systems, and advanced stealth browser automation using Python.
 
 ---
 
@@ -229,6 +229,15 @@ Full-stack enterprise system capstone integrating HTTP fetchers, DOM parsers, he
 
 </details>
 
+<details open>
+<summary><b>Day 25 — Advanced Anti-Scraping Bypass & Stealth Browser Automation</b> (<code>day_25_playwright_stealth.py</code>)</summary>
+
+<br />
+
+Advanced stealth browser automation masking `navigator.webdriver` flags, overriding hardware fingerprints, and simulating human interaction jitter.
+
+</details>
+
 ---
 
 ## ⚡ Quick Start
@@ -240,6 +249,6 @@ pip install requests beautifulsoup4 aiohttp
 # 2. Run CLI Application
 python day_16_production_cli.py --pages 2 --verbose
 
-# 3. Run Enterprise System Capstone
-python day_24_enterprise_system.py
+# 3. Run Stealth Browser Engine
+python day_25_playwright_stealth.py
 ```
