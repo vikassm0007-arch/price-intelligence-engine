@@ -1,10 +1,10 @@
 """
-Day 27 — Real-Time Price Trend Analytics & Delta Aggregator
-===========================================================
+Day 27 — Real-Time Price Trend Analytics & Delta Aggregator Engine
+===================================================================
 Learn & Practice advanced price intelligence metrics & trend analytics:
 - Moving average price calculations (MA-7, MA-30)
 - Price volatility scoring (Standard Deviation of price points)
-- Competitive Price Index (CPI) calculations vs market benchmarks
+- Competitive Price Index (CPI) & Price Momentum calculations
 """
 
 import math
@@ -42,11 +42,18 @@ class PriceAnalyticsAggregator:
             return 100.0
         return round((target_price / market_benchmark) * 100, 1)
 
+    def calculate_price_momentum(self, prices: List[float]) -> float:
+        """Calculates overall percentage momentum between earliest and latest price snapshot."""
+        if len(prices) < 2 or prices[0] == 0:
+            return 0.0
+        return round(((prices[-1] - prices[0]) / prices[0]) * 100, 2)
+
     def analyze_product_series(self, title: str, price_history: List[float], market_benchmark: float) -> Dict[str, Any]:
         curr_price = price_history[-1] if price_history else 0.0
         ma = self.calculate_moving_average(price_history)
         volatility = self.calculate_volatility_score(price_history)
         cpi = self.calculate_competitive_price_index(curr_price, market_benchmark)
+        momentum = self.calculate_price_momentum(price_history)
 
         return {
             "product_title": title,
@@ -54,6 +61,7 @@ class PriceAnalyticsAggregator:
             "moving_average_price": ma,
             "volatility_score": volatility,
             "competitive_price_index": cpi,
+            "price_momentum_pct": momentum,
             "price_position": "COMPETITIVE" if cpi <= 100.0 else "PREMIUM",
         }
 
