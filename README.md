@@ -16,7 +16,7 @@
 
 ## 📌 Overview
 
-This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, asynchronous requests, relational database storage, automated webhooks, headless browser engines, proxy pools, anti-bot evasion, data validation, enterprise ORMs, REST API services, task worker queues, enterprise capstone systems, and advanced stealth browser automation using Python.
+This repository documents the step-by-step journey of building a production-ready **Price Intelligence Engine**. It covers core HTTP request architectures, anti-bot bypass strategies, DOM tree parsing, multi-page crawling, defensive retries, deep product scraping, multi-threading, dynamic API endpoints, price monitoring analytics, asynchronous requests, relational database storage, automated webhooks, headless browser engines, proxy pools, anti-bot evasion, data validation, enterprise ORMs, REST API services, task worker queues, cluster managers, trend aggregators, and master enterprise capstone systems using Python.
 
 ---
 
@@ -238,6 +238,33 @@ Advanced stealth browser automation masking `navigator.webdriver` flags, overrid
 
 </details>
 
+<details open>
+<summary><b>Day 26 — Distributed Scraper Node Cluster & Load Balancer</b> (<code>day_26_cluster_manager.py</code>)</summary>
+
+<br />
+
+Managing multi-region worker node pools (`US-East`, `EU-Central`, `AP-South`) with round-robin and least-loaded load balancing.
+
+</details>
+
+<details open>
+<summary><b>Day 27 — Real-Time Price Trend Analytics & Delta Aggregator</b> (<code>day_27_analytics_aggregator.py</code>)</summary>
+
+<br />
+
+Calculating moving average prices (MA), price volatility scores (standard deviation), and Competitive Price Index (CPI) metrics.
+
+</details>
+
+<details open>
+<summary><b>Day 28 — Master Enterprise Price Intelligence Suite Capstone</b> (<code>day_28_master_capstone.py</code>)</summary>
+
+<br />
+
+Master enterprise suite capstone orchestrating node clusters, stealth browsers, trend analytics, ORM ledgers, and health reports.
+
+</details>
+
 ---
 
 ## ⚡ Quick Start
@@ -246,9 +273,6 @@ Advanced stealth browser automation masking `navigator.webdriver` flags, overrid
 # 1. Install dependencies
 pip install requests beautifulsoup4 aiohttp
 
-# 2. Run CLI Application
-python day_16_production_cli.py --pages 2 --verbose
-
-# 3. Run Stealth Browser Engine
-python day_25_playwright_stealth.py
+# 2. Run Master Suite Capstone
+python day_28_master_capstone.py
 ```
