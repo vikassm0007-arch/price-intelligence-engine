@@ -265,6 +265,15 @@ Master enterprise suite capstone orchestrating node clusters, stealth browsers, 
 
 </details>
 
+<details open>
+<summary><b>Day 29 — Schema Drift Detection & Self-Healing Extraction Pipeline</b> (<code>day_29_schema_drift_detector.py</code>)</summary>
+
+<br />
+
+Automated schema drift detection with tiered self-healing extractors (Primary Selectors ➔ Microdata/JSON-LD ➔ Structural Heuristics) and incident logging.
+
+</details>
+
 ---
 
 ## ⚡ Quick Start
@@ -273,6 +282,7 @@ Master enterprise suite capstone orchestrating node clusters, stealth browsers, 
 # 1. Install dependencies
 pip install requests beautifulsoup4 aiohttp
 
-# 2. Run Master Suite Capstone
-python day_28_master_capstone.py
+# 2. Run Schema Drift Detector
+python day_29_schema_drift_detector.py
 ```
+
