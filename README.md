@@ -274,6 +274,15 @@ Automated schema drift detection with tiered self-healing extractors (Primary Se
 
 </details>
 
+<details open>
+<summary><b>Day 30 — Complete Production Platform & Prometheus Observability</b> (<code>day_30_production_platform.py</code>)</summary>
+
+<br />
+
+Grand finale capstone orchestrating end-to-end extraction, self-healing, data cleaning, and Prometheus telemetry metrics exposition (`/metrics`).
+
+</details>
+
 ---
 
 ## ⚡ Quick Start
@@ -282,7 +291,8 @@ Automated schema drift detection with tiered self-healing extractors (Primary Se
 # 1. Install dependencies
 pip install requests beautifulsoup4 aiohttp
 
-# 2. Run Schema Drift Detector
-python day_29_schema_drift_detector.py
+# 2. Run Complete Production Platform & Prometheus Metrics
+python day_30_production_platform.py
 ```
+
 
