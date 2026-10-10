@@ -283,6 +283,15 @@ Grand finale capstone orchestrating end-to-end extraction, self-healing, data cl
 
 </details>
 
+<details open>
+<summary><b>Day 31 — High-Throughput Caching, Rate Limiting & ETag Deduplication</b> (<code>day_31_redis_cache_rate_limiter.py</code>)</summary>
+
+<br />
+
+Optimized scraping pipeline with Token Bucket rate limiting, HTTP 304 conditional ETag caching, and SHA-256 content deduplication.
+
+</details>
+
 ---
 
 ## ⚡ Quick Start
@@ -291,8 +300,9 @@ Grand finale capstone orchestrating end-to-end extraction, self-healing, data cl
 # 1. Install dependencies
 pip install requests beautifulsoup4 aiohttp
 
-# 2. Run Complete Production Platform & Prometheus Metrics
-python day_30_production_platform.py
+# 2. Run High-Throughput Caching & Rate Limiting Engine
+python day_31_redis_cache_rate_limiter.py
 ```
+
 
 
