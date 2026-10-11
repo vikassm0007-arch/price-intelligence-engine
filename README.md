@@ -292,6 +292,15 @@ Optimized scraping pipeline with Token Bucket rate limiting, HTTP 304 conditiona
 
 </details>
 
+<details open>
+<summary><b>Day 32 — Change Data Capture (CDC), Event Streaming & PubSub Bus</b> (<code>day_32_cdc_event_streaming.py</code>)</summary>
+
+<br />
+
+Enterprise event-driven architecture capturing real-time price drops, stock mutations, and new listings routed through a decoupled Pub/Sub event bus.
+
+</details>
+
 ---
 
 ## ⚡ Quick Start
@@ -300,9 +309,10 @@ Optimized scraping pipeline with Token Bucket rate limiting, HTTP 304 conditiona
 # 1. Install dependencies
 pip install requests beautifulsoup4 aiohttp
 
-# 2. Run High-Throughput Caching & Rate Limiting Engine
-python day_31_redis_cache_rate_limiter.py
+# 2. Run CDC & Event Streaming Engine
+python day_32_cdc_event_streaming.py
 ```
+
 
 
 
