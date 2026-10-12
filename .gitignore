@@ -11,6 +11,8 @@ price_intelligence_orm.db
 *.csv
 *.db
 *.sqlite
+*.parquet
+datalake/
 
 # Python cache
 __pycache__/

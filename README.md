@@ -301,17 +301,27 @@ Enterprise event-driven architecture capturing real-time price drops, stock muta
 
 </details>
 
+<details open>
+<summary><b>Day 33 — Columnar Data Lake Ingestion: Partitioned Apache Parquet & Analytics</b> (<code>day_33_parquet_lakehouse.py</code>)</summary>
+
+<br />
+
+High-performance data lakehouse ingestion with Hive-style directory partitioning, Snappy columnar compression, and vectorized analytical aggregations.
+
+</details>
+
 ---
 
 ## ⚡ Quick Start
 
 ```bash
 # 1. Install dependencies
-pip install requests beautifulsoup4 aiohttp
+pip install requests beautifulsoup4 aiohttp pandas pyarrow
 
-# 2. Run CDC & Event Streaming Engine
-python day_32_cdc_event_streaming.py
+# 2. Run Parquet Lakehouse & Analytics Engine
+python day_33_parquet_lakehouse.py
 ```
+
 
 
 
