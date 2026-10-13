@@ -310,6 +310,15 @@ High-performance data lakehouse ingestion with Hive-style directory partitioning
 
 </details>
 
+<details open>
+<summary><b>Day 34 — Resilient Web Scraping: Circuit Breaker Pattern & Fault Tolerance</b> (<code>day_34_circuit_breaker_resilience.py</code>)</summary>
+
+<br />
+
+Fault tolerance engine implementing the Circuit Breaker pattern (CLOSED ➔ OPEN ➔ HALF-OPEN) with fail-fast execution, cooldown canary probes, and stale-while-revalidate fallbacks.
+
+</details>
+
 ---
 
 ## ⚡ Quick Start
@@ -318,9 +327,10 @@ High-performance data lakehouse ingestion with Hive-style directory partitioning
 # 1. Install dependencies
 pip install requests beautifulsoup4 aiohttp pandas pyarrow
 
-# 2. Run Parquet Lakehouse & Analytics Engine
-python day_33_parquet_lakehouse.py
+# 2. Run Circuit Breaker Resilience Engine
+python day_34_circuit_breaker_resilience.py
 ```
+
 
 
 
